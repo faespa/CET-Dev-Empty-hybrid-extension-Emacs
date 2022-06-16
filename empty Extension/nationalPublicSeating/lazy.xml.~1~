@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lazy-extension-info>
+  <main id="custom.nationalPublicSeating" />
+  <toolboxes>
+    <toolbox>
+      <package>custom.nationalPublicSeating</package>
+      <function>toolboxLibrary</function>
+      <label>National Public Seating</label>
+      <parent>cet.extensions;dummy</parent>
+      <sortKey>custom.nationalPublicSeating</sortKey>
+    </toolbox>
+  </toolboxes>
+</lazy-extension-info>

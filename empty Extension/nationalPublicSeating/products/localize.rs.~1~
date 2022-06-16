@@ -1,0 +1,36 @@
+﻿package custom.workspace48.products;
+
+$width {
+    english "Width";
+}
+
+$depth {
+    english "Depth";
+}
+
+$frameOnly {
+    english "Frame Only";
+}
+$frameColor {
+    english "Frame color";
+}
+
+$fc.b {
+    english "Black";
+}
+
+$fc.w {
+    english "White";
+}
+
+$Modesty {
+    english "Modesty Kit";
+}
+
+$modesty.wm {
+    english "With Modesty";
+}
+
+$modesty.wtm {
+    english "Without Modesty";
+}

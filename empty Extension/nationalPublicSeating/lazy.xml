@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lazy-extension-info>
+  <main id="custom.nationalPublicSeating" />
+
+
+  <toolboxes>
+    <toolbox>
+      <package>custom.nationalPublicSeating</package>
+      <function>nationalPublicSeatingLibrary</function>
+      <label>National Public Seating</label>
+      <sortKey>custom.nationalPublicSeating#0000</sortKey>
+    </toolbox>
+ <toolbox>
+      <package>custom.nationalPublicSeating.products</package>
+      <function>productsLibrary</function>
+      <label>Products</label>
+      <sortKey>custom.nationalPublicSeating#0001</sortKey>
+    </toolbox>
+
+  </toolboxes>
+</lazy-extension-info>

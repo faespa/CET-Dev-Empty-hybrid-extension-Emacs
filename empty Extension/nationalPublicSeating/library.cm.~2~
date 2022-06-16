@@ -1,0 +1,322 @@
+﻿/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Link�ping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package custom.nationalPublicSeating;
+
+use cm.abstract.dataSymbol.ui.libraryBuilder;
+use cm.os;
+//use cm.core: library;
+
+
+/**
+ * Library.
+ */
+private Library cachedLibrary;
+
+
+/**
+ * Toolbox library.
+ */
+package Library nationalPublicSeatingLibrary() {
+    if (!cachedLibrary or developMode) {
+	symbol pkg = #:package;
+    
+	Library lib = library(pkg=pkg, companyKey="nationalPublicSeatingGroup") {
+	    container LibraryLimb root("nationalPublicSeatingLibrary") {
+	
+	/**
+	 * Header
+	 */
+		/**
+		 * Header
+		 */
+		limb HeaderLimb header("", extendRight=true, compact=false, image=exImage("extensionLogo"));
+		header.forceText = "";
+
+		container LibraryLimb infoContainer("nationalPublicSeating", null, label="nationalPublicSeating") {
+
+		    /*limb HeaderLimb headerText_1("headerText_1", compact=false, margins=(10, 0), align=middle);
+		    headerText_1.forceText = "When it comes to casework, tables,\n desks and tops… We Can.\n\nWB Manufacturing can design, build \n and deliver standard cabinets and\n lockers, modular casework, mobile\n furniture and custom  solutions for\n any environment, any market,\n anywhere, anytime.
+		      \nFrom fixed solutions for non-active\n environments, to custom modular\n and mobile units for active and\n semi-active installations, our in-house\n Design Team is ready to assist you.\n By the room, floor or building\n and whether you’re renovating an\n existing space or designing and\n constructing a new space, We Can.\n Design. Build. Deliver.\n       \n Visit our website to view \nmore of our products at:\n";*/
+
+		    /* NewlineHint(headerText_1, pkg);
+		    limb CustomLinkLimb customLink("url", link="https://wibenchmfg.com//", _m=(60, 3));
+		    NewlineHint(headerText_1, pkg);
+
+		    NewlineHint(headerText_1, pkg);
+		    limb HeaderLimb headerText_2("headerText_2", compact=false, margins=(15, 0), align=middle);
+		     headerText_2.forceText = "\n \n For more information or questions\n please contact\n";
+		    NewlineHint(headerText_1, pkg);
+		    limb CustomLinkLimb emailLink("emailLink", link="info@workspace48.com", _m=(70, 0));*/
+
+		    /*NewlineHint(headerText_1, pkg);
+		    limb HeaderLimb headerText_3("headerText_3", compact=false, margins=(15, 0), align=middle);
+		    headerText_3.forceText = "\n \n or you can reach us by phone at\n         \n(800) 242-2303\n";
+		    NewlineHint(headerText_1, pkg);*/
+
+		}
+		
+		container LibraryLimb extrasCont("extrasHeader", null, label="Extras") {
+		    extrasCont.hideSection=false;
+
+
+		    /**
+		     * Pick List
+		     */
+		    UIImageHint plistIcon(showLabel=true, exImage("picklist"), textSide=right);
+		    SnapperLimb plist(extrasCont, pkg, "nationalPublicSeatingPicklist", hint=plistIcon, label="Picklist");
+
+
+		    /**
+		     * Project Info
+		     */
+		    NewlineHint(extrasCont, pkg);
+		    UIImageHint uiProjInfo(showLabel=true, exImage("project_information.png"),
+					   textSide=right, frameStyle=coolButtonFrame);
+		    VoidCallbackLimb projInfo(extrasCont, pkg, "customerDataDialogLabel", uiProjInfo,
+					      callback=function showProjInfoCB);
+
+		    /**
+		     * Elevation
+		     */
+		    NewlineHint(extrasCont, pkg);
+		    TextSnapperLimb iso(extrasCont, pkg, "nationalPublicSeatingIsoViewRect",
+					image=exImage("elevation.png"), label=$isoviewsCategoryName);
+		}
+	    }
+	};
+
+
+	cachedLibrary = lib;
+	cachedLibrary.keywordSearchRootPkg = #:package;
+	cachedLibrary.keywordSearchRootKey = "nationalPublicSeatingGroup";
+    }
+    
+    return cachedLibrary;
+}
+
+
+public class CustomLinkLimb extends LinkLimb {
+
+    private pointI m;
+    private pointI p;
+    private str link2;
+    private str toolTipText2;
+     public constructor(LibraryLimb parent, symbol pkg, str key, str link,
+			LibraryLimbVisibility vs=null,
+			str toolTipText=null, pointI _m=(0, 0), pointI _p=(0, -90)) {
+	 this.m = _m;
+	 this.p = _p;
+	this.link2 = link;
+	this.toolTipText2 = toolTipText ? getRs(toolTipText, pkg) : getRs(key # "Tip", pkg);
+	super(parent, pkg, key, null, vs, null);
+     }
+
+     public Window build(Window window) {
+	 LinkLimbButton buttonA(window, key=longKey, label=label, frameStyle=noFrame, callback=function lLinkButtonCB, labelColor=linkLabelColor, margins=m, pos=p);
+	 if (buttonA) {
+	     buttonA.limb=this;
+	     buttonA.setToolTipText(toolTipText);
+	 }
+	 return buttonA;
+     }
+}
+
+private color linkLabelColor = color(0, 0, 100);
+/**
+ * Left button callback.
+ */
+private void lLinkButtonCB(Control c) {
+    if (c as LimbCallbackButton) {
+	VoidCallbackLimb limb = c.limb;
+	if (limb as CustomLinkLimb) {
+	    if (!autoCrashing) {
+		if (limb and limb.link2) openLocation(limb.link2);
+	    }
+	}
+    }
+}
+
+/**
+ * Show project info callback.
+ */
+private void showProjInfoCB() {
+    if (!autoCrashing) {
+	Window parent = application.?appWindow;
+	Url xml = cmFindUrl("custom/nationalPublicSeating/Project Info.xml");
+	if (parent.valid and xml.isReadable) {
+	    beginWaitCursor();
+	    projectInfoDialog(application.appWindow, xml);
+	    endWaitCursor();
+	} else ptrace("error".eAngry);
+    }
+}
+
+ 
+/**
+ * Workspace48 Picklist
+ */
+public class Workspace48Picklist extends DsPicklist {
+    public constructor() {
+	name = "nationalPublicSeating";
+    }
+}
+
+public class TextSnapperLimb extends SnapperLimb {
+    /**
+     * Text offset
+     */
+    public int txtOffset;
+    
+    
+    /**
+     * Create a new limb and register parent-child relation.
+     */
+    public constructor(LibraryLimb parent, symbol pkg, str key, UIHint hint=null,
+		       LibraryLimbVisibility vs=null, Image image=null,  str label=null,
+		       str toolTipText=null, Image toolTipImage=null, bool keywordHidden=false,
+		       int offset=6) {
+	super(parent, pkg, key, hint, vs, image, label, toolTipText, toolTipImage, keywordHidden);
+	txtOffset = offset;
+    }
+
+
+    /**
+     * Build the Limb.
+     */
+    public Window build(Window window) {
+	SelectButton button = buildComponentLimb(this, window);
+	if (button) {
+	    button.setToolTipText(getRs(this.key # "Tip", this.pkg));
+	    button.autoSize();
+	}
+	return button;
+    }
+
+
+    /**
+     * Build component limb.
+     */
+    extend public SelectButton buildComponentLimb(ComponentLimb limb, Window window) {
+	SelectButton button;
+
+	limb.hint = UIHint(showLabel=true);
+	str label = limb.hint ? limb.label() : null;
+
+	if (limb as TextSnapperLimb) {
+	    if (limb.image in MemoryImage) {
+		button = snapperImage(window, limb.key, limb.pkg, label, limb.image, limb.hint, offset=txtOffset);
+	    }
+	}
+	return button;
+    }
+
+
+    /**
+     * Snapper image button.
+     */
+    final private SelectButton snapperImage(Window window, str name, symbol pkg, str label, Image image,
+					    UIHint hiLazySnapper3DMemoryButtonnt,
+					    int offset=6) {
+	FrameStyle fs = toolboxButtonFrameStyle;
+	return Workspace48SnapperImageButton(window, frameStyle=fs, snapperPkg=pkg, snapperName=name,
+				     label=label, textSide=right,
+				     image=image, align=middle, offset=offset);
+    }
+}
+
+
+/**
+ * Snapper image button. 
+ * Adds an offset.
+ */
+public class Workspace48SnapperImageButton extends LazyBasicSnapperButton {
+    /**
+     * Create a new SnapperImageButton.
+     */
+    public constructor(Window parent,
+		       // inherited key arguments
+		       Font font=controlFont,
+		       Brush brush=null,
+		       FrameStyle frameStyle=pushButtonFrame,
+		       frame3DState frameState=frameStateDown,
+		       pointI pos=(0, 0),
+		       sizeI size=(-1, -1),
+		       pointI margins=(2, 2),
+		       alignment align=up,
+		       ControlGroup group=null,
+		       function (Control control) callback=null,
+		       str label=null,
+		       color labelColor=color(0, 0, 0),
+		       bool threeState=false,
+		       symbol snapperPkg=null,
+		       str snapperName=null,
+		       // extends arguments
+		       alignment textSide=up,
+		       Image image=null,
+		       int offset = 6) {
+	super(parent,
+	      font=font,
+	      brush=brush ? brush : skin.control,
+	      frameStyle=frameStyle,
+	      frameState=frameState,
+	      pos=pos,
+	      size=size,
+	      margins=margins,
+	      align=align,
+	      group=group,
+	      callback=callback,
+	      label=label,
+	      labelColor=labelColor,
+	      threeState=threeState,
+	      snapperPkg=snapperPkg,
+	      snapperName=snapperName,
+	      image=label.empty ? image : null);
+	
+	if (label.empty) {
+	    ImagePainter imagePainter(winPainter);
+	    imagePainter.setImage(image);
+	    winPainter = imagePainter;
+	} else {
+	    ImagePainter imagePainter(winPainter);
+	    imagePainter.setImage(image);
+	    ComboTextPainter comboPainter(winPainter.LabelPainter, imagePainter);
+	    comboPainter.setTextSide(textSide);
+	    comboPainter.setAlignment(align);
+	    comboPainter.setTextOffset(offset);
+	    winPainter = comboPainter;
+	}
+    }
+}

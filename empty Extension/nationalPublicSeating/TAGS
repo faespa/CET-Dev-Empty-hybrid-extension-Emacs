@@ -1,0 +1,39 @@
+
+basicBox.cm,383
+package custom.nationalPublicSeating;nationalPublicSeating36,1711
+use cm: geometry.advanced,advanced38,1752
+use cm: geometry.advanced, core,38,1752
+use cm: geometry.advanced, core, core3D,38,1752
+use cm: geometry.advanced, core, core3D, core.calc;calc38,1752
+public class BasicBox extends Model3DSnapper 44,1878
+public class PartWithUncertainCurrency extends Part 115,3603
+
+extension.cm,561
+package custom.nationalPublicSeating;nationalPublicSeating36,1711
+use cm: extension,37,1750
+use cm: extension, extension.util,util37,1750
+use cm: extension, extension.util, security,37,1750
+use cm: extension, extension.util, security, rs;37,1750
+use cm.core: search;38,1800
+private const str name 45,1858
+private class NationalPublicSeatingExtension extends UltraLazyExtension 52,1966
+package Image exImage(90,2572
+package Extension getExtension(101,2803
+package ExtensionId getExtensionId(109,2959
+package ExtensionInfo getExtensionInfo(126,3553
+
+library.cm,177
+package custom.nationalPublicSeating;nationalPublicSeating36,1711
+use cm.core: library;37,1750
+private Library cachedLibrary;43,1800
+package Library toolboxLibrary(49,1867
+
+package.cm,199
+use cm: basic,37,1758
+use cm: basic, io,37,1758
+use cm: basic, io, io.util,util37,1758
+use cm: basic, io, io.util, win,37,1758
+use cm: basic, io, io.util, win, extension.util.lazy;lazy37,1758
+
+extension.xml,19
+<?xml version=1,0

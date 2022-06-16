@@ -1,0 +1,144 @@
+/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Linköping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package custom.workspace48.storage;
+
+use cm.abstract.dataSymbol.ui.libraryBuilder;
+use cm.os;
+
+/**
+ * Library.
+ */
+
+private Library cachedLibrary;
+
+/**
+ * Package.
+ */
+package symbol pkg = #:package;
+package symbol pkgp = "custom.workspace48.products";
+
+/**
+ * Storage library.
+ */
+public Library storageLibrary() {
+    if (!cachedLibrary or developMode) {
+
+	LibraryLimb root(pkg, "storageLibrary");
+
+	/**
+	 * Header.
+	 */
+	/*HeaderLimb header(root, pkg, "", extendRight=true, compact=false,
+			  image=exImage("seatingHeader"), align=middle);
+			  header.forceText = "";*/
+	//	HeaderLimb header("", extendRight=true, compact=false, image=exImage("extensionLogo"));
+	//	header.forceText = "";
+
+
+
+	{
+	    /*HeaderLimb eloProducts(root, pkgp, key="Desks", margins=(10, 10), align=upLeft, font=systemFont);
+	      NewlineHint(root, pkgp);*/
+	    HeaderLimb colStorage(root, pkgp, key="colStorage", margins=(10, 10), align=upLeft, font=systemFont);
+	    NewlineHint(colStorage, pkgp);
+
+
+	    SnapperLimb stgBookcase(colStorage, pkgp, "Bookcase",
+				image=exImage("AXB12_W"));
+
+	    SnapperLimb stgCuppboard(colStorage, pkgp, "Cupboard",
+				     image=exImage("AXC12_W"));
+
+	    SnapperLimb stgCredenza(colStorage, pkgp, "Credenza",
+				    image=exImage("AXCZ18_W"));
+
+	    SnapperLimb stgLateral(colStorage, pkgp, "LateralFile",
+				   image=exImage("AXLF2_W"));
+
+	    SnapperLimb planter(colStorage, pkgp, "Tambour",
+				image=exImage("AXPBOX_W"));
+
+	    SnapperLimb stgDeskMount(colStorage, pkgp, "DeskMountShelf",
+				   image=exImage("AXDSH6_W"));
+
+
+	    /**
+	     * Overhead.
+	     */
+	    HeaderLimb colOverhead(root, pkgp, key="colOverhead", margins=(10, 10), align=upLeft, font=systemFont);
+	    NewlineHint(colOverhead, pkgp);
+
+	    SnapperLimb overhead(colOverhead, pkgp, "WallmountHutch",
+				 image=exImage("AX12WMH4D_W"));
+
+	    /**
+	     * Mobiles.
+	     */
+
+	    HeaderLimb colMobiles(root, pkgp, key="colMobiles", margins=(10, 10), align=upLeft, font=systemFont);
+	    NewlineHint(colMobiles, pkgp);
+
+	    SnapperLimb mibiles(colMobiles, pkgp, "Mobiles",
+				image=exImage("AXM1F_W"));
+
+	    SnapperLimb caddy(colMobiles, pkgp, "Caddy",
+			      image=exImage("AXCMB_W"));
+
+	    SnapperLimb toppapad(colMobiles, pkgp, "ToppaP",
+				 image=exImage("AXMTOPPA_B"));
+
+	    /**
+	     * Towers.
+	     */
+
+	    HeaderLimb colTowers(root, pkgp, key="colTowers", margins=(10, 10), align=upLeft, font=systemFont);
+	    NewlineHint(colTowers, pkgp);
+
+	    SnapperLimb tower(colTowers, pkgp, "Towers",
+			       image=exImage("AXBST12_W"));
+
+	     }
+
+
+	//cachedLibrary = lib;
+	cachedLibrary = CompanyLibrary(root, pkg, companyKey="Workspace48Group");
+	cachedLibrary.keywordSearchRootPkg = pkg;
+	cachedLibrary.keywordSearchRootKey = "Workspace48Group";
+    }
+    
+    return cachedLibrary;
+}
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<extension-info>
+  <name>National Public Seating</name>
+  <version>13.0.0.0</version>
+  <type>catalog</type>
+  <unsupported-platforms />
+  <main>custom.nationalPublicSeating</main>
+  <packages>
+    <package id="custom.nationalPublicSeating" />
+  </packages>
+  <extension-dependencies>
+    <dependency id="cet.designer" />
+    <dependency id="cm.abstract.dataSymbol" />
+    <dependency id="cm.abstract.dataSymInterface" />
+    <dependency id="cm.abstract.projectInfo" />
+  </extension-dependencies>
+  <security-delegates>
+    <delegate id="cet.designer" />
+  </security-delegates>
+</extension-info>
